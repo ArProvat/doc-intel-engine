@@ -1,7 +1,8 @@
 from celery import Celery
 
-from app.config import settings
+from app.config import get_settings
 
+settings = get_settings()
 celery_app = Celery("doc_intel", broker=settings.redis_url)
 celery_app.conf.update(
     task_serializer="json",
